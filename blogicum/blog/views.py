@@ -7,13 +7,12 @@ MAX_POST_PAGE = 5
 
 
 def base_query():
-    query_set = Post.objects.select_related(
+    return Post.objects.select_related(
         'location', 'author', 'category'
     ).filter(
         is_published=True,
         category__is_published=True,
         pub_date__lte=datetime.datetime.now())
-    return query_set
 
 
 def index(request):
